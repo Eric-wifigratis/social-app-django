@@ -26,6 +26,8 @@ ASSOCIATION_SERVER_URL_LENGTH = getattr(
     settings, setting_name('ASSOCIATION_SERVER_URL_LENGTH'), 255)
 ASSOCIATION_HANDLE_LENGTH = getattr(
     settings, setting_name('ASSOCIATION_HANDLE_LENGTH'), 255)
+SOCIAL_AUTH_NAME_APP = getattr(
+    settings, setting_name('SOCIAL_AUTH_NAME_APP'), 255)
 
 
 class AbstractUserSocialAuth(models.Model, DjangoUserMixin):
@@ -36,6 +38,7 @@ class AbstractUserSocialAuth(models.Model, DjangoUserMixin):
     uid = models.CharField(max_length=UID_LENGTH)
     extra_data = JSONField()
     objects = UserSocialAuthManager()
+    provider = models.CharField(max_length=32,default=SOCIAL_AUTH_NAME_APP)
 
     def __str__(self):
         return str(self.user)
