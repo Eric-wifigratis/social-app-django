@@ -38,7 +38,7 @@ class AbstractUserSocialAuth(models.Model, DjangoUserMixin):
     uid = models.CharField(max_length=UID_LENGTH)
     extra_data = JSONField()
     objects = UserSocialAuthManager()
-    provider = models.CharField(max_length=32,default=SOCIAL_AUTH_NAME_APP)
+    name_app = models.CharField(max_length=32,default=SOCIAL_AUTH_NAME_APP)
 
     def __str__(self):
         return str(self.user)
